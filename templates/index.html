@@ -1,0 +1,29 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/static/global.css">
+    <title>
+        {% block title %}
+        {% endblock %} - MyDictionary
+    </title>
+</head>
+<body>
+
+   <header>
+       <nav>
+       <a href="/">Home</a>
+       <a href="/create">Create</a>
+       <a href="/login">Logout</a>
+       <a href="/sign-up">Sign Up</a>
+       <a href="/todos">Todos</a>
+       </nav>
+   </header>
+
+    <main>
+        {% block main %}
+
+        {% endblock %}
+    </main>
+</body>
+</html>
