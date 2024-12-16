@@ -1,16 +1,23 @@
+use rust_axum_askama_tuto::init;
 use rust_axum_askama_tuto::routes::routers;
 
 #[tokio::main]
 async fn main() {
 
-    let port = 8000;
-    let listener = tokio::net::TcpListener::bind(format!("127.0.0.1:{port}"))
+    let addr = "127.0.0.1:8000";
+    let listener = tokio::net::TcpListener::bind(&addr)
         .await
-        .unwrap();
-    let app = routers();
+        .expect("Failed to bind address");
+    init::logging();
 
-    println!("Server running at http://127.0.0.1:{}", port);
-    axum::serve(listener, app).await.unwrap();
+    init::database_connection().await;
+
+    tracing::info!("Server is starting...");
+    tracing::info!("Listening at {}", addr);
+    tracing::debug!("testing ");
+
+    let app = routers();
+    axum::serve(listener, app).await.expect("Failed to start server");
 
 }
 

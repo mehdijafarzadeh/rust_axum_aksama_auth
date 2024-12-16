@@ -7,8 +7,38 @@ Sign Up {% call super() %}
     <meta name="description" content="here is sign up page"
 {% endblock %}
 
+<!-- CSS block -->
+{% block css %}
+    <link rel="stylesheet" href="/static/auth.css">
+{% endblock %}
+
 {% block main %}
-    <h1>
-        This is Sign Up page
-    </h1>
+<div class="auth-container">
+    <h1 class="auth-heading">Create Account</h1>
+    <form method="post" action="/sign-up">
+
+        {% if email_error.is_empty() %}
+        <input type="text", placeholder="Enter your email" name="email" value="{{email}}">
+        {% else %}
+        <input class="invalid-input-field animate__animated animate__shakeX" type="text" placeholder="Enter your email"
+               name="email" value="{{email}}">
+        <label >{{email_error}}</label>
+        {% endif %}
+
+        {% if password_error.is_empty() %}
+        <input type="password", placeholder="Enter your password" name="password">
+        {% else %}
+        <input class="invalid-input-field animate__animated animate__shakeX"
+               type="password" placeholder="Enter your password" name="password">
+        <label >{{password_error}}</label>
+        {% endif %}
+
+
+        <button type="submit" class="filled-button">Sign Up</button>
+    </form>
+    <form method="GET" action="/log-in">
+        <button>Already have an account? Log In</button>
+    </form>
+</div>
+
 {% endblock %}

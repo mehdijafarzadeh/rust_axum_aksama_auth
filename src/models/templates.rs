@@ -10,19 +10,15 @@ pub struct CreateTemplate;
 
 #[derive(Template)]
 #[template(path="pages/log-in.html")]
-pub struct LoginTemplate;
-
-#[derive(Template)]
-#[template(path="pages/notfound.html")]
-pub struct NotFoundTemplate;
-
-#[derive(Template)]
-#[template(path="pages/server-error.html")]
-pub struct ServerErrorTemplate;
+pub struct LogInTemplate;
 
 #[derive(Template)]
 #[template(path="pages/sign-up.html")]
-pub struct SignUpTemplate;
+pub struct SignUpTemplate<'a>{
+    pub email: &'a str,
+    pub email_error: &'a str,
+    pub password_error: &'a str
+}
 
 #[derive(Template)]
 #[template(path="pages/todos.html")]
