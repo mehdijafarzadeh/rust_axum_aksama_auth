@@ -1,7 +1,16 @@
 <nav>
   <a href="/">Home</a>
-  <a href="/create">Create</a>
-  <a href="/log-in">Logout</a>
-  <a href="/sign-up">Sign Up</a>
+
+  {% if is_authenticated %}
   <a href="/todos">Todos</a>
+  <a href="/create">Create</a>
+
+  <form action="/log-out" method="POST">
+    <button type="submit">Log Out</button>
+  </form>
+
+  {% else %}
+  <a href="/sign-up">Sign Up</a>
+  <a href="/log-in">Log-in</a>
+  {% endif %}
 </nav>
